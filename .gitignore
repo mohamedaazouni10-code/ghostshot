@@ -1,0 +1,38 @@
+# Data (too large for Git — lives on Drive)
+data/raw/
+data/processed/
+data/attack_samples/
+
+# Model weights
+models/checkpoints/
+*.pt
+*.pth
+*.onnx
+
+# Experiment tracking
+wandb/
+mlruns/
+
+# Notebooks — strip outputs before committing
+notebooks/.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Environment
+.env
+.venv/
+*.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Results
+results/
+!results/figures/*.png

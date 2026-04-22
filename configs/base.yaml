@@ -1,0 +1,60 @@
+# ─────────────────────────────────────────────
+# GhostShot — base configuration
+# All paths are relative to the repo root.
+# ─────────────────────────────────────────────
+
+project:
+  name: ghostshot
+  version: "1.0"
+  seed: 42
+  device: cuda
+
+data:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  attack_dir: data/attack_samples
+  img_size: 224
+  channels: 3
+  splits:
+    train: 0.70
+    val:   0.15
+    test:  0.15
+  num_classes: 2
+
+model:
+  backbone: efficientnet_b4
+  pretrained: true
+  use_fft_branch: true
+  dropout: 0.30
+  freeze_backbone_epochs: 2
+
+training:
+  epochs: 30
+  batch_size: 32
+  lr: 1.0e-4
+  lr_min: 1.0e-6
+  scheduler: cosine
+  weight_decay: 1.0e-5
+  amp: true
+  grad_clip: 1.0
+  early_stopping_patience: 7
+
+attack:
+  face_auth_model: ArcFace
+  face_auth_backend: retinaface
+  face_auth_threshold: 0.68
+  num_attack_probes: 50
+  generators:
+    - simswap
+    - instantid
+
+wandb:
+  enabled: true
+  entity: YOUR_WANDB_USERNAME
+  project: ghostshot
+  log_freq: 10
+
+paths:
+  drive_mount: /content/drive/MyDrive/ghostshot
+  checkpoints: models/checkpoints
+  results: results
