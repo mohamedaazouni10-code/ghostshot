@@ -42,7 +42,7 @@ training:
 attack:
   face_auth_model: ArcFace
   face_auth_backend: retinaface
-  face_auth_threshold: 0.68
+  face_auth_threshold: 0.60
   num_attack_probes: 50
   generators:
     - simswap
