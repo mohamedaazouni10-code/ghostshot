@@ -65,7 +65,7 @@ def train_one_epoch(model, loader, criterion, optimizer, scaler, device, cfg):
     all_labels = np.concatenate(all_labels)
 
     try:
-        auc = roc_auc_score(all_labels, all_preds, multi_class="ovr")
+        auc = roc_auc_score(all_labels, all_preds[:, 1])
     except ValueError:
         auc = 0.0
 
@@ -96,7 +96,7 @@ def evaluate(model, loader, criterion, device, cfg):
     all_labels = np.concatenate(all_labels)
 
     try:
-        auc = roc_auc_score(all_labels, all_preds, multi_class="ovr")
+        auc = roc_auc_score(all_labels, all_preds[:, 1])
     except ValueError:
         auc = 0.0
 
